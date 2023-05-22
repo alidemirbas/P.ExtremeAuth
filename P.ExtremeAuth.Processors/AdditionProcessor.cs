@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P.ExtremeAuth.DTO
+namespace P.ExtremeAuth.Processors
 {
-    public class AdditionProcedure : IAuthProcessor
+    public class AdditionProcessor : IProcessor
     {
         private ProcedureDefinition _definition;
         public ProcedureDefinition Definition
@@ -28,7 +28,7 @@ namespace P.ExtremeAuth.DTO
 
         public void Execute(RefBox refBox)
         {
-            if (refBox.AuthorizationStateValue == null || refBox.ProcedureValue == null)
+            if (refBox.StateValue == null || refBox.ProcedureValue == null)
                 throw new System.Exception();//todo
 
             switch (refBox.TypeCode)
@@ -42,20 +42,20 @@ namespace P.ExtremeAuth.DTO
                 case TypeCode.Byte:
                     break;
                 case TypeCode.Int32:
-                    refBox.AuthorizationStateValue = (int)refBox.AuthorizationStateValue + (int)refBox.ProcedureValue;
+                    refBox.StateValue = (int)refBox.StateValue + (int)refBox.ProcedureValue;
                     break;
                 case TypeCode.Int64:
                     break;
                 case TypeCode.Decimal:
-                    refBox.AuthorizationStateValue = (decimal)refBox.AuthorizationStateValue + (decimal)refBox.ProcedureValue;
+                    refBox.StateValue = (decimal)refBox.StateValue + (decimal)refBox.ProcedureValue;
                     break;
                 case TypeCode.DateTime:
-                    refBox.AuthorizationStateValue = new DateTime((((DateTime)refBox.AuthorizationStateValue).Ticks + ((DateTime)refBox.ProcedureValue).Ticks));
+                    refBox.StateValue = new DateTime((((DateTime)refBox.StateValue).Ticks + ((DateTime)refBox.ProcedureValue).Ticks));
                     break;
                 case TypeCode.Double:
                     break;
                 case TypeCode.String:
-                    refBox.AuthorizationStateValue = string.Concat(refBox.AuthorizationStateValue, refBox.ProcedureValue);
+                    refBox.StateValue = string.Concat(refBox.StateValue, refBox.ProcedureValue);
                     break;
                 default:
                     break;

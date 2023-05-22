@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P.ExtremeAuth.DTO
+namespace P.ExtremeAuth.Processors
 {
-    public class AuthProcCache
+    public class ProcessorCache
     {
-        public AuthProcCache(DbContext db)
+        public ProcessorCache(DbContext db)
         {
             _db = db;
         }
@@ -18,7 +18,7 @@ namespace P.ExtremeAuth.DTO
 
         private readonly DbContext _db;
         
-        public IEnumerable<IAuthProcessor> Processors { get; internal set; }
+        public IEnumerable<IProcessor> Processors { get; internal set; }
 
         public void Seed()
         {
@@ -28,20 +28,20 @@ namespace P.ExtremeAuth.DTO
             //buradaki islemler startup'ta yapilma sebebi 
             //cok fazla proc olabileceginden program daha transaction'lari almaya baslamadan once yapilmali
 
-            var authProcInterface = typeof(IAuthProcessor);
-            var authProcAssembly = authProcInterface.Assembly;
-            var authProcCache = new List<IAuthProcessor>();
+            var procInterface = typeof(IProcessor);
+            var procAssembly = procInterface.Assembly;
+            var procCache = new List<IProcessor>();
 
-            authProcAssembly.DefinedTypes
-                .Where(x => authProcInterface.IsAssignableFrom(x) && !x.IsInterface/*iproc'un kendisini alma*/)
+            procAssembly.DefinedTypes
+                .Where(x => procInterface.IsAssignableFrom(x) && !x.IsInterface/*iproc'un kendisini alma*/)
                 .ToList()
                 .ForEach(pdeType =>
                 {
-                    authProcCache.Add((IAuthProcessor)Activator.CreateInstance(pdeType));
+                    procCache.Add((IProcessor)Activator.CreateInstance(pdeType));
                 });
 
             var procDefEntityList = _db.ProcedureDefinition.ToList();
-            var delProcDefEntityList = procDefEntityList.Where(x => !authProcCache.Any(y => y.Definition.Type == x.Type)).ToList();//artik assembly'de olmayan proc def'lari ve dolayisiyla girilmis olan proc'lari silmek gerek islem yapilamayacagi icin
+            var delProcDefEntityList = procDefEntityList.Where(x => !procCache.Any(y => y.Definition.Type == x.Type)).ToList();//artik assembly'de olmayan proc def'lari ve dolayisiyla girilmis olan proc'lari silmek gerek islem yapilamayacagi icin
 
             var delIds = delProcDefEntityList.Select(x => x.Id);
             var delProcEntityList = _db.Procedure.Where(x => delIds.Contains(x.ProcedureDefinitionId)).ToList();//ama ilk iliskili proc'lar silinmeli
@@ -59,7 +59,7 @@ namespace P.ExtremeAuth.DTO
 
             //temizlik bitti simdi yenileri ekle
 
-            var newProcDefs = authProcCache.Where(x => !procDefEntityList.Any(y => y.Type == x.Definition.Type)).Select(x => x.Definition);
+            var newProcDefs = procCache.Where(x => !procDefEntityList.Any(y => y.Type == x.Definition.Type)).Select(x => x.Definition);
             
             foreach (var newProcDef in newProcDefs)
                 _db.ProcedureDefinition.Add(newProcDef);
@@ -70,9 +70,9 @@ namespace P.ExtremeAuth.DTO
 
             //Id'leri set ettin
             procDefEntityList = _db.ProcedureDefinition.ToList();
-            authProcCache.ForEach(x => x.Definition.Id = procDefEntityList.Single(y => y.Type == x.Definition.Type).Id);
+            procCache.ForEach(x => x.Definition.Id = procDefEntityList.Single(y => y.Type == x.Definition.Type).Id);
 
-            Processors = authProcCache;
+            Processors = procCache;
 
             _seed = true;
         }

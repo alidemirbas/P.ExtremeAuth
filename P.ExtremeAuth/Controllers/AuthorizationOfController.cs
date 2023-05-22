@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using P.ExtremeAuth.DTO;
+using P.ExtremeAuth.Processors;
 using P.ExtremeAuth.Entity;
 using P.ExtremeAuth.Models;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using P.ExtremeAuth.DTO;
+using P.ExtremeAuth.Processors;
 using P.ExtremeAuth.Entity;
 using P.ExtremeAuth.Models;
 
@@ -15,9 +15,9 @@ namespace P.ExtremeAuth.Controllers
     public class AuthorizationController : ControllerBase
     {
         private readonly Data.DbContext _db;
-        private readonly AuthProcCache _authProcCache;
+        private readonly ProcessorCache _authProcCache;
 
-        public AuthorizationController(Data.DbContext db, AuthProcCache authProcCache)
+        public AuthorizationController(Data.DbContext db, ProcessorCache authProcCache)
         {
             _db = db;
             _authProcCache = authProcCache;
@@ -47,7 +47,7 @@ namespace P.ExtremeAuth.Controllers
 
                         authProc.Execute(refBox);
 
-                        authTo.StateValue = refBox.AuthorizationStateValue.ToString();//interger'in datetime'in hep override tostring'leri senin isini gorececk merak etme
+                        authTo.StateValue = refBox.StateValue.ToString();//interger'in datetime'in hep override tostring'leri senin isini gorececk merak etme
 
                         _db.AuthorizationTo.Update(authTo);
                     }

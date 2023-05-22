@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P.ExtremeAuth.Entity", "P.E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P.ExtremeAuth.Data", "P.ExtremeAuth.Data\P.ExtremeAuth.Data.csproj", "{7023AD1F-68D2-4ED2-8F59-E5EC9CF7D17D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P.ExtremeAuth.DTO", "P.ExtremeAuth.DTO\P.ExtremeAuth.DTO.csproj", "{B25B32CA-BA41-4DF1-B75B-8D5B12294E8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P.ExtremeAuth.Processors", "P.ExtremeAuth.Processors\P.ExtremeAuth.Processors.csproj", "{DF32E6AC-5976-4A45-8B09-4F47F0F21FA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{7023AD1F-68D2-4ED2-8F59-E5EC9CF7D17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7023AD1F-68D2-4ED2-8F59-E5EC9CF7D17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7023AD1F-68D2-4ED2-8F59-E5EC9CF7D17D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B25B32CA-BA41-4DF1-B75B-8D5B12294E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B25B32CA-BA41-4DF1-B75B-8D5B12294E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B25B32CA-BA41-4DF1-B75B-8D5B12294E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B25B32CA-BA41-4DF1-B75B-8D5B12294E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF32E6AC-5976-4A45-8B09-4F47F0F21FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF32E6AC-5976-4A45-8B09-4F47F0F21FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF32E6AC-5976-4A45-8B09-4F47F0F21FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF32E6AC-5976-4A45-8B09-4F47F0F21FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

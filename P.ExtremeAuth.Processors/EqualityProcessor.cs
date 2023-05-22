@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P.ExtremeAuth.DTO
+namespace P.ExtremeAuth.Processors
 {
-    public class EqualityProcessor : IAuthProcessor
+    public class EqualityProcessor : IProcessor
     {
         private ProcedureDefinition _definition;
         public ProcedureDefinition Definition
@@ -28,10 +28,10 @@ namespace P.ExtremeAuth.DTO
 
         public void Execute(RefBox refBox)
         {
-            if (refBox.AuthorizationStateValue == null || refBox.ProcedureValue == null)
+            if (refBox.StateValue == null || refBox.ProcedureValue == null)
                 throw new System.Exception();//todo
 
-            refBox.AuthorizationStateValue = refBox.ProcedureValue;
+            refBox.StateValue = refBox.ProcedureValue;
         }
     }
 

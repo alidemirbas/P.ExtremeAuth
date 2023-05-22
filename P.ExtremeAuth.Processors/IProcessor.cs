@@ -1,9 +1,9 @@
 ﻿using P.ExtremeAuth.Entity;
 using System;
 
-namespace P.ExtremeAuth.DTO
+namespace P.ExtremeAuth.Processors
 {
-    public interface IAuthProcessor
+    public interface IProcessor
     {
         ProcedureDefinition Definition { get; }
 
