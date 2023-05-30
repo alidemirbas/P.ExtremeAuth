@@ -10,6 +10,7 @@ namespace P.ExtremeAuth.Entity
     {
         public Guid Id { get; set; }
         public Guid RefId { get; set; }
+        public int Priority { get; set; }
 
         public Guid AuthorizationId { get; set; }
         public virtual Authorization Authorization { get; set; }

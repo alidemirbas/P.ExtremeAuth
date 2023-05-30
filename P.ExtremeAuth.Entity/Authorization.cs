@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using P.ExtremeAuth.Entity.Enums;
 
 namespace P.ExtremeAuth.Entity
 {
@@ -25,7 +24,7 @@ namespace P.ExtremeAuth.Entity
 
         //rule eger condition none ise bu demektir ki yetkinin var olmus olmasi yeterli. (orn  Open yetkisi. bu transaction bu client'a acik mi? evet,auth var,cond none... ve bir proc uygulanmasina gerek yok demek)
         //oku AuthorizationAssignment
-        public int ConditionOperator { get; set; }//kosul sorgulanmasi proc'a bagli olarak hem once hem sonra olabilir
+        public ConditionOperator ConditionOperator { get; set; }//kosul sorgulanmasi proc'a bagli olarak hem once hem sonra olabilir
         public string ConditionValue { get; set; }//bu degismez mesela 5 giris hakki
 
         public bool Mock { get; set; }//EZ kampanya icin dusun category ve ayrica product kampanyasi var. ama category kamp uygulandiktan sonra bir de product kamp uygulansin istemiyorsun. o zaman cat kamp mock true olacak

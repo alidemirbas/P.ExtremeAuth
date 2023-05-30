@@ -7,7 +7,7 @@ namespace P.ExtremeAuth.Entity
         public Guid Id { get; set; }//todo bu propu yok et fluent mapping'te cokacok yap
 
         //Authorization.StateValue'ye uygulanacak deger //client'tan gelen degere de Authorization.Value x Condition uygulanir
-        public string Value { get; set; }//type'i string olacak ki database'e kaydedesin suan bunu obj yapip bi anlik mallik yasadin yapma bi daha
+        public string Value { get; set; }
         public int Runtime { get; set; }//bu burda cunku Authorization.Procedures lerden bazilari once bazilari sonra olabilsin diye
         public int Priority { get; set; }
         //typecode'a gerek yok auth'daki ref
